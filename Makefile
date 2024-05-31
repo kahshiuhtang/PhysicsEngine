@@ -7,7 +7,7 @@ INCL_DIR = include
 SRC_DIR = src
 
 
-TARGET = phyeng
+TARGET = physim
 
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
