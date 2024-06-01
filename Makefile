@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -std=c++11
+CXXFLAGS = -Wall -std=c++14
 CUDA_ROOT_DIR=/usr/local/cuda
 
 BLDD = build
