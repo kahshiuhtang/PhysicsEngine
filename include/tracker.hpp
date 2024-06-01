@@ -1,9 +1,10 @@
 #ifndef TRACKER_H
 #define TRACKER_H
-#include <string>
 #include "entity.hpp"
 #include <memory>
-namespace Tracker {
+#include <vector>
+#include <SDL2/SDL.h>
+namespace Engine {
 
 enum Shape {
     CIRCLE,
@@ -13,16 +14,20 @@ enum Shape {
 
 class Tracker {
 public:
-    Tracker(int window_width, int window_height, std::string window_name);
+    Tracker(int window_width, int window_height, const char *window_name);
 
     void draw(const Entity::EntityInterface& entity) const;
+    int main_loop();
     void update();
     std::shared_ptr<Entity::EntityInterface> create_obj(Shape shape);
 
-    virtual ~Tracker() {}
+    ~Tracker();
 private:
     float x_pos;
     float y_pos;
+    std::vector<std::shared_ptr<Entity::EntityInterface>> vec;
+    SDL_Renderer* renderer;
+    SDL_Window* window;
 };
 
 } 

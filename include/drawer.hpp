@@ -7,8 +7,8 @@ class Drawer {
 public:
     Drawer();
 
-    int SDL_RenderDrawCircle(SDL_Renderer * renderer, int x, int y, int radius);
-    int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius);
+    int DrawCircle(SDL_Renderer * renderer, int x, int y, int radius);
+    int FillCircle(SDL_Renderer * renderer, int x, int y, int radius);
 
     ~Drawer() {}
 private:
