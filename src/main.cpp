@@ -1,64 +1,57 @@
 #include <SFML/Graphics.hpp>
+#include <SDL2/SDL.h>
 #include <iostream>
 #include <unistd.h>
 #include <iostream>
 #include "kernel.cuh"
 #include <cstdlib>
+#include <stdio.h>
+
+//Screen dimension constants
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1024, 512), "Physics Engine");
-    sf::CircleShape circle(20.f);
-    circle.setFillColor(sf::Color::Green);
-    circle.setFillColor(sf::Color::Green);
-    circle.setPosition(375.0f, 275.0f);  
-    float currentVel = 0.0f;
-    float currentPos = 275.0f;
-    float const gravity = 9.8f;
-    float time = 0.01;
-    bool hitGround = false;
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed){
-                window.close();
-            }else if(event.type == sf::Event::KeyPressed){
-                if(event.key.code == sf::Keyboard::Left){
-                    circle.move(-2, 0);
-                }
-                else if(event.key.code == sf::Keyboard::Right){
-                    circle.move(2, 0);
-                }
-                else if(event.key.code == sf::Keyboard::Up){
-                    circle.move(0, -2);
-                }
-                else if(event.key.code == sf::Keyboard::Down){
-                    circle.move(0, 2);
-                }
-            }
-        }
-        double a,b,c;
-        kernel(&a, &b, &c, 5);
-        window.clear();
-        circle.setPosition(375.0f, currentPos); 
-        window.draw(circle);
-        window.display();
-        std::cout << currentPos << "\n";
-        if(hitGround || currentPos > 500){
-            hitGround = true;
-            currentPos -= currentVel;
-        }else{
-            currentPos = currentPos - (0.5 * - gravity * time * time) / 10;
-            currentVel = (gravity * time ) / 10;
-        }
-        if(currentPos < 10){
-            hitGround = false;
-        }
-        time += 0.01;
-        usleep(10000);
-    }
+    SDL_Window* window = NULL;
+	
+	//The surface contained by the window
+	SDL_Surface* screenSurface = NULL;
+
+	//Initialize SDL
+	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+	{
+		printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
+	}
+	else
+	{
+		//Create window
+		window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		if( window == NULL )
+		{
+			printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
+		}
+		else
+		{
+			//Get window surface
+			screenSurface = SDL_GetWindowSurface( window );
+
+			//Fill the surface white
+			SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+			
+			//Update the surface
+			SDL_UpdateWindowSurface( window );
+            
+            //Hack to get window to stay up
+            SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
+		}
+	}
+
+	//Destroy window
+	SDL_DestroyWindow( window );
+
+	//Quit SDL subsystems
+	SDL_Quit();
 
     return 0;
 }

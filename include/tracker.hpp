@@ -1,6 +1,5 @@
 #ifndef TRACKER_H
 #define TRACKER_H
-#include <SFML/Graphics.hpp>
 #include <string>
 #include "entity.hpp"
 #include <memory>
@@ -23,7 +22,6 @@ public:
 private:
     float x_pos;
     float y_pos;
-    sf::RenderWindow window;
 };
 
 } 

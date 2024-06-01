@@ -1,8 +1,7 @@
 #include "tracker.hpp"
 #include "circle.hpp"
-#include "entity.hpp"
 namespace Tracker{
-    Tracker::Tracker(int window_width, int window_height, std::string window_name) : window(sf::VideoMode(window_width, window_height), window_name){
+    Tracker::Tracker(int window_width, int window_height, std::string window_name){
 
     }
     void Tracker::draw(const Entity::EntityInterface& entity) const{
