@@ -7,7 +7,8 @@ namespace Tracker {
 
 enum Shape {
     CIRCLE,
-    TRIANGLE
+    TRIANGLE,
+    RECTANGLE,
 };
 
 class Tracker {
@@ -16,7 +17,7 @@ public:
 
     void draw(const Entity::EntityInterface& entity) const;
     void update();
-    std::unique_ptr<Entity::EntityInterface> create_obj(Shape shape);
+    std::shared_ptr<Entity::EntityInterface> create_obj(Shape shape);
 
     virtual ~Tracker() {}
 private:
