@@ -30,7 +30,7 @@ $(BLDD):
 	mkdir -p $(BIND)
 
 $(EXE): $(BLDD) $(CUDA_OBJS) $(OBJS) 
-	$(CXX) $(CXXFLAGS) -o $(BIND)/$(EXE) $(OBJS) $(CUDA_OBJS) -lsfml-graphics -lsfml-window -lsfml-system $(CUDA_LIB_DIR) $(CUDA_LINK_LIBS)
+	$(CXX) $(CXXFLAGS) -o $(BIND)/$(EXE) $(OBJS) $(CUDA_OBJS) -lSDL2  $(CUDA_LIB_DIR) $(CUDA_LINK_LIBS)
 
 $(BLDD)/%.o : $(SRCD)/%.cu $(INCD)/%.cuh
 	$(NVCC) $(NVCC_FLAGS) -I $(INCD) -c $< -o $@ $(NVCC_LIBS)
