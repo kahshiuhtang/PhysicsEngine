@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <iostream>
+#include "kernel.cuh"
 #include <cstdlib>
 
 int main()
@@ -38,6 +39,8 @@ int main()
                 }
             }
         }
+        double a,b,c;
+        kernel(&a, &b, &c, 5);
         window.clear();
         circle.setPosition(375.0f, currentPos); 
         window.draw(circle);
