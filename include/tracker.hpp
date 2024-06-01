@@ -1,16 +1,23 @@
 #ifndef TRACKER_H
 #define TRACKER_H
 #include <SFML/Graphics.hpp>
-#include "entity.hpp"
 #include <string>
+#include "entity.hpp"
+#include <memory>
 namespace Tracker {
+
+enum Shape {
+    CIRCLE,
+    TRIANGLE
+};
 
 class Tracker {
 public:
     Tracker(int window_width, int window_height, std::string window_name);
 
-    virtual void draw(const Entity::EntityInterface& entity) const = 0;
-    virtual void update() = 0;
+    void draw(const Entity::EntityInterface& entity) const;
+    void update();
+    std::unique_ptr<Entity::EntityInterface> create_obj(Shape shape);
 
     virtual ~Tracker() {}
 private:

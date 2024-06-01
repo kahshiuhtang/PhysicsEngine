@@ -7,12 +7,12 @@ class Circle : public Entity::EntityInterface {
 public:
     Circle(float x, float y);
 
-    virtual void draw() const = 0;
-    virtual void update() = 0;
-    virtual float getX() const = 0;
-    virtual float getY() const = 0;
+    void draw() const;
+    void update();
+    float getX() const;
+    float getY() const;
 
-    virtual ~Circle() {}
+    ~Circle() {}
 private:
     float x_pos;
     float y_pos;

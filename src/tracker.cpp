@@ -1,5 +1,6 @@
 #include "tracker.hpp"
-
+#include "circle.hpp"
+#include "entity.hpp"
 namespace Tracker{
     Tracker::Tracker(int window_width, int window_height, std::string window_name) : window(sf::VideoMode(window_width, window_height), window_name){
 
@@ -10,4 +11,14 @@ namespace Tracker{
     void Tracker::update(){
 
     }
+    std::unique_ptr<Entity::EntityInterface> Tracker::create_obj(Shape shape){
+        switch(shape){
+            case Shape::CIRCLE:
+                return std::make_unique<Entity::Circle>(350.0f, 250.0f);
+            case Shape::TRIANGLE:
+                break;
+            default:
+                break;
+        }
+    } 
 }
