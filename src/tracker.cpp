@@ -27,26 +27,36 @@ namespace Engine{
         }
 
     }
-    void Tracker::draw(const Entity::EntityInterface& entity) const{
-        //entity.draw();
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    void Tracker::draw() const{
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Black
         SDL_RenderClear(renderer);
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        //DrawCircle(renderer, 250, 250, 50);
+
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // White
+        for (const auto& entity : entities) {
+            entity->draw(renderer);
+        }
         SDL_RenderPresent(renderer);
-        SDL_Delay(5000);
     }
     void Tracker::update(){
 
     }
     std::shared_ptr<Entity::EntityInterface> Tracker::create_obj(Shape shape){
         switch(shape){
-            case Shape::CIRCLE:
-                return std::make_shared<Entity::Circle>(350.0f, 250.0f);
-            case Shape::TRIANGLE:
-                return std::make_shared<Entity::Triangle>(350.0f, 250.0f);
-            case Shape::RECTANGLE:
-                return std::make_shared<Entity::Rectangle>(350.0f, 250.0f);
+            case Shape::CIRCLE: {
+                std::shared_ptr<Entity::Circle> new_circle = std::make_shared<Entity::Circle>(350.0f, 250.0f);
+                entities.push_back(new_circle);
+                return new_circle;
+            }
+            case Shape::TRIANGLE: {
+                std::shared_ptr<Entity::Triangle> new_triangle = std::make_shared<Entity::Triangle>(350.0f, 250.0f);
+                entities.push_back(new_triangle);
+                return new_triangle;
+            }
+            case Shape::RECTANGLE: {
+                std::shared_ptr<Entity::Rectangle> new_rectangle = std::make_shared<Entity::Rectangle>(350.0f, 250.0f);
+                entities.push_back(new_rectangle);
+                return new_rectangle;
+            }
             default:
                 return nullptr;
         }
@@ -58,12 +68,16 @@ namespace Engine{
             while( SDL_PollEvent( &e ) ){ 
                 if( e.type == SDL_QUIT ) 
                     quit = true; 
+                draw();
             }
         }
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
         return 0;
+
+        
     }
     Tracker::~Tracker() {
-        SDL_DestroyWindow( window );
-	    SDL_Quit();
     }
 }

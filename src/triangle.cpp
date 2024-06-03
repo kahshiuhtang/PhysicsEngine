@@ -5,7 +5,7 @@ namespace Entity {
         x_pos = x;
         y_pos = y;
     }
-    void Triangle::draw() const{
+    void Triangle::draw(SDL_Renderer * renderer) const{
 
     }
     void Triangle::update(){

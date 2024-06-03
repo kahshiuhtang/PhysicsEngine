@@ -7,7 +7,7 @@ class Circle : public Entity::EntityInterface {
 public:
     Circle(float x, float y);
 
-    void draw() const;
+    void draw(SDL_Renderer * renderer) const;
     void update();
     float getX() const;
     float getY() const;

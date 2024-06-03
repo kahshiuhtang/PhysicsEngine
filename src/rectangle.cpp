@@ -5,7 +5,7 @@ namespace Entity {
         x_pos = x;
         y_pos = y;
     }
-    void Rectangle::draw() const{
+    void Rectangle::draw(SDL_Renderer * renderer) const{
 
     }
     void Rectangle::update(){

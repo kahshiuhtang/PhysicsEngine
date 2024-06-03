@@ -1,8 +1,7 @@
 #include "drawer.hpp"
 
 namespace Renderer{
-    int Drawer::DrawCircle(SDL_Renderer * renderer, int x, int y, int radius)
-    {
+    int Drawer::DrawCircle(SDL_Renderer * renderer, int x, int y, int radius){
         int offsetx, offsety, d;
         int status;
 
@@ -45,8 +44,7 @@ namespace Renderer{
     }
 
 
-    int Drawer::FillCircle(SDL_Renderer * renderer, int x, int y, int radius)
-    {
+    int Drawer::FillCircle(SDL_Renderer * renderer, int x, int y, int radius){
         int offsetx, offsety, d;
         int status;
 

@@ -7,7 +7,7 @@ class Triangle : public Entity::EntityInterface {
 public:
     Triangle(float x, float y);
 
-    void draw() const;
+    void draw(SDL_Renderer * renderer) const;
     void update();
     float getX() const;
     float getY() const;

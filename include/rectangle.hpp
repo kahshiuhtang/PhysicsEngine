@@ -7,7 +7,7 @@ class Rectangle : public Entity::EntityInterface {
 public:
     Rectangle(float x, float y);
 
-    void draw() const;
+    void draw(SDL_Renderer * renderer) const;
     void update();
     float getX() const;
     float getY() const;

@@ -15,8 +15,7 @@ const int SCREEN_HEIGHT = 480;
 int main()
 {
 	Engine::Tracker tracker(800, 600, "Physics Simulator");
-	Entity::Circle circle(400.0f, 300.0f);
-	tracker.draw(circle);
+	tracker.create_obj(Engine::Shape::CIRCLE);
 	tracker.main_loop();
     return 0;
 }
