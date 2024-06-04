@@ -1,7 +1,9 @@
 #include "state.hpp"
 #include <cmath>
 namespace Engine{
-
+    State::State(){
+        
+    }
     void State::copy(const State *state){
 
     }
@@ -10,7 +12,7 @@ namespace Engine{
         n_c = constraintCount;
 
         destroy();
-        
+
         a_theta = new double[n];
         v_theta = new double[n];
         theta = new double[n];
