@@ -23,11 +23,12 @@ public:
 
     ~Tracker();
 private:
-    float x_pos;
-    float y_pos;
     std::vector<std::shared_ptr<Entity::EntityInterface>> entities;
     SDL_Renderer* renderer;
     SDL_Window* window;
+
+    int wind_height;
+    int wind_width;
 };
 
 } 

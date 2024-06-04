@@ -5,7 +5,7 @@ namespace Entity {
 
 class Circle : public Entity::EntityInterface {
 public:
-    Circle(float x, float y);
+    Circle(float x, float y, int window_width, int window_height);
 
     void draw(SDL_Renderer * renderer) const;
     void update();
@@ -16,6 +16,11 @@ public:
 private:
     float x_pos;
     float y_pos;
+    float x_vel;
+    float y_vel;
+
+    int wind_width;
+    int wind_height;
 };
 
 } 

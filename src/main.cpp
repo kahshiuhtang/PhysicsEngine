@@ -9,12 +9,12 @@
 #include "circle.hpp"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
 
 int main()
 {
-	Engine::Tracker tracker(800, 600, "Physics Simulator");
+	Engine::Tracker tracker(SCREEN_WIDTH, SCREEN_HEIGHT, "Physics Simulator");
 	tracker.create_obj(Engine::Shape::CIRCLE);
 	tracker.main_loop();
     return 0;

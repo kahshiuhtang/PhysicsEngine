@@ -1,27 +1,22 @@
-// CUDA libraries.
-#include <cuda.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cublas_v2.h>
 #include <cuda_runtime.h>
 
-// Include associated header file.
-#include "kernel.cuh"
+__global__ void naive_MM(int M, int N, int K, float alpha, const float *A,
+                            const float *B, float beta, float *C) {
+  const uint x = blockIdx.x * blockDim.x + threadIdx.x;
+  const uint y = blockIdx.y * blockDim.y + threadIdx.y;
 
-
-
-
-
-/**
- * Sample CUDA device function which adds an element from array A and array B.
- *
- */
-__global__ void cuda_kernel(double *A, double *B, double *C, int arraySize){
-    // Get thread ID.
-    int tid = blockDim.x * blockIdx.x + threadIdx.x;
-
-    // Check if thread is within array bounds.
-    if ( tid < arraySize ) {
-        // Add a and b.
-        C[tid] = A[tid] + B[tid];
+  // if statement is necessary to make things work under tile quantization
+  if (x < M && y < N) {
+    float tmp = 0.0;
+    for (int i = 0; i < K; ++i) {
+      tmp += A[x * K + i] * B[i * N + y];
     }
+    // C = α*(A@B)+β*C
+    C[x * N + y] = alpha * tmp + beta * C[x * N + y];
+  }
 }
 
 void kernel(double *A, double *B, double *C, int arraySize) {
@@ -43,7 +38,6 @@ void kernel(double *A, double *B, double *C, int arraySize) {
     dim3 gridSize(512 / arraySize + 1, 1);
 
     // Launch CUDA kernel.
-    cuda_kernel<<<gridSize, blockSize>>>(d_A, d_B, d_C, arraySize);
 
     // Copy result array c back to host memory.
     cudaMemcpy(C, d_C, arraySize * sizeof(double), cudaMemcpyDeviceToHost);

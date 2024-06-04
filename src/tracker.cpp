@@ -6,6 +6,8 @@
 #include <iostream>
 namespace Engine{
     Tracker::Tracker(int window_width, int window_height, const char *window_name){
+        wind_height = window_height;
+        wind_width = window_width;
         if( SDL_Init( SDL_INIT_VIDEO ) < 0 ){
             printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
             exit(EXIT_FAILURE);
@@ -38,12 +40,14 @@ namespace Engine{
         SDL_RenderPresent(renderer);
     }
     void Tracker::update(){
-
+        for (const auto& entity : entities) {
+            entity->update();
+        }
     }
     std::shared_ptr<Entity::EntityInterface> Tracker::create_obj(Shape shape){
         switch(shape){
             case Shape::CIRCLE: {
-                std::shared_ptr<Entity::Circle> new_circle = std::make_shared<Entity::Circle>(350.0f, 250.0f);
+                std::shared_ptr<Entity::Circle> new_circle = std::make_shared<Entity::Circle>(350.0f, 250.0f, wind_width, wind_height);
                 entities.push_back(new_circle);
                 return new_circle;
             }
@@ -65,11 +69,12 @@ namespace Engine{
         SDL_Event e; 
         bool quit = false; 
         while( quit == false ){ 
-            while( SDL_PollEvent( &e ) ){ 
-                if( e.type == SDL_QUIT ) 
-                    quit = true; 
-                draw();
-            }
+            SDL_PollEvent( &e );
+            if( e.type == SDL_QUIT ) 
+                quit = true; 
+            update();
+            draw();
+            SDL_Delay(10);
         }
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);

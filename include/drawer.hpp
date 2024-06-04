@@ -5,7 +5,6 @@ namespace Renderer {
 
 class Drawer {
 public:
-    Drawer();
 
     static int DrawCircle(SDL_Renderer * renderer, int x, int y, int radius);
     static int FillCircle(SDL_Renderer * renderer, int x, int y, int radius);
