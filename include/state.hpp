@@ -3,6 +3,8 @@
 namespace Engine{
     class State{
         public:
+            State();
+            ~State();
             void copy(const State *state);
             void resize(int bodyCount, int constraintCount);
             void destroy();

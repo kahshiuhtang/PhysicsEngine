@@ -6,6 +6,7 @@ BLDD = build
 BIND = bin
 INCD = include
 SRCD = src
+KERND = kernels
 
 NVCC=nvcc
 NVCC_FLAGS=
@@ -19,8 +20,8 @@ EXE = physim
 
 SRCS = $(wildcard $(SRCD)/*.cpp)
 OBJS = $(SRCS:$(SRCD)/%.cpp=$(BLDD)/%.o)
-CUDA_SRCS = $(wildcard $(SRCD)/*.cu)
-CUDA_OBJS = $(CUDA_SRCS:$(SRCD)/%.cu=$(BLDD)/%.o)
+CUDA_SRCS = $(wildcard $(SRCD)/$(KERND)/*.cu)
+CUDA_OBJS = $(CUDA_SRCS:$(SRCD)/$(KERND)/%.cu=$(BLDD)/%.o)
 
 .PHONY: all
 all: $(EXE)
@@ -32,7 +33,7 @@ $(BLDD):
 $(EXE): $(BLDD) $(CUDA_OBJS) $(OBJS) 
 	$(CXX) $(CXXFLAGS) -o $(BIND)/$(EXE) $(OBJS) $(CUDA_OBJS) -lSDL2  $(CUDA_LIB_DIR) $(CUDA_LINK_LIBS)
 
-$(BLDD)/%.o : $(SRCD)/%.cu $(INCD)/%.cuh
+$(BLDD)/%.o : $(SRCD)/$(KERND)/%.cu $(INCD)/$(KERND)/%.cuh
 	$(NVCC) $(NVCC_FLAGS) -I $(INCD) -c $< -o $@ $(NVCC_LIBS)
 
 $(BLDD)/%.o: $(SRCD)/%.cpp | $(BLDD)
