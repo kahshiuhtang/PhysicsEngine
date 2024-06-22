@@ -1,6 +1,6 @@
-#ifndef PSIM_ENTITY_H
-#define PSIM_ENTITY_H
-namespace psim
+#ifndef PSM_ENTITY_H
+#define PSM_ENTITY_H
+namespace PSM
 {
     class Entity
     {
@@ -9,6 +9,10 @@ namespace psim
         bool draw();
 
     private:
+        int pos_x;
+        int pos_y;
+        int prev_pos_x;
+        int prev_pos_y;
     };
 }
 #endif

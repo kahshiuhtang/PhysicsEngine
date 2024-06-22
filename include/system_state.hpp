@@ -1,6 +1,6 @@
-#ifndef PSIM_SYSTEM_STATE_H
-#define PSIM_SYSTEM_STATE_H
-namespace psim
+#ifndef PSM_SYSTEM_STATE_H
+#define PSM_SYSTEM_STATE_H
+namespace PSM
 {
     class SystemState
     {

@@ -2,7 +2,7 @@
 
 int main()
 {
-    psim::Driver driver;
+    PSM::Driver driver;
     if (driver.init())
     {
         return EXIT_FAILURE;

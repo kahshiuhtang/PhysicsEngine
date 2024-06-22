@@ -1,6 +1,6 @@
-#ifndef PSIM_SOLVER_H
-#define PSIM_SOLVER_H
-namespace psim
+#ifndef PSM_SOLVER_H
+#define PSM_SOLVER_H
+namespace PSM
 {
     class Solver
     {

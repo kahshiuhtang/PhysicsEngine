@@ -1,6 +1,6 @@
 #include "entity.hpp"
 
-namespace psim
+namespace PSM
 {
 
 }

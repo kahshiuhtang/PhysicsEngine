@@ -1,9 +1,9 @@
-#ifndef PSIM_RENDERER_STATE_H
-#define PSIM_RENDERER_STATE_H
+#ifndef PSM_RENDERER_STATE_H
+#define PSM_RENDERER_STATE_H
 #include <SDL2/SDL.h>
 #include <iostream>
 
-namespace psim
+namespace PSM
 {
     class Renderer
     {

@@ -1,11 +1,11 @@
-#ifndef PSIM_DRIVER_H
-#define PSIM_DRIVER_H
+#ifndef PSM_DRIVER_H
+#define PSM_DRIVER_H
 
 #include "renderer.hpp"
 #include "solver.hpp"
 #include "system_state.hpp"
 
-namespace psim
+namespace PSM
 {
     class Driver
     {

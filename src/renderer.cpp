@@ -1,6 +1,6 @@
 #include "renderer.hpp"
 
-namespace psim
+namespace PSM
 {
     bool Renderer::init(int w_height, int w_width)
     {

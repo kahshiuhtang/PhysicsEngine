@@ -1,6 +1,6 @@
 #include "driver.hpp"
 
-namespace psim
+namespace PSM
 {
     Driver::Driver()
     {
