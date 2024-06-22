@@ -1,16 +1,14 @@
-#ifndef ENTITY_H
-#define ENTITY_H
-#include <SDL2/SDL.h>
-namespace Entity {
+#ifndef PSIM_ENTITY_H
+#define PSIM_ENTITY_H
+namespace psim
+{
+    class Entity
+    {
+    public:
+        bool update();
+        bool draw();
 
-class EntityInterface {
-public:
-    virtual void draw(SDL_Renderer * renderer) const = 0;
-    virtual void update() = 0;
-    virtual float getX() const = 0;
-    virtual float getY() const = 0;
-};
-
-} 
-
-#endif 
+    private:
+    };
+}
+#endif
