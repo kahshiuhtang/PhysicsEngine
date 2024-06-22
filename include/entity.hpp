@@ -5,14 +5,15 @@ namespace PSM
     class Entity
     {
     public:
+        bool init();
         bool update();
         bool draw();
+        bool destroy();
 
     private:
-        int pos_x;
-        int pos_y;
-        int prev_pos_x;
-        int prev_pos_y;
+        int *pos; // array of size 3
+        int *old_pos;
+        float mass;
     };
 }
 #endif

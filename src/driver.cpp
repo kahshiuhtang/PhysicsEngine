@@ -8,13 +8,13 @@ namespace PSM
     bool Driver::init()
     {
         bool err = false;
-        _setup_gui();
+        _setup_window();
         return err;
     }
-    bool Driver::create_objects()
+    bool Driver::add_object(int *pos)
     {
         bool err = false;
-
+        err = state.create_object(pos);
         return err;
     }
     bool Driver::run()
@@ -33,7 +33,7 @@ namespace PSM
         }
         return err;
     }
-    bool Driver::_setup_gui()
+    bool Driver::_setup_window()
     {
         bool err = false;
         renderer.init(800, 800);

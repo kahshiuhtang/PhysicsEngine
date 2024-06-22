@@ -12,7 +12,7 @@ namespace PSM
     public:
         Driver();
         bool init();
-        bool create_objects();
+        bool add_object(int *pos);
         bool run();
         bool stop();
 
@@ -21,6 +21,7 @@ namespace PSM
         Solver solver;
         SystemState state;
 
+        bool _setup_window();
         bool _setup_gui();
         bool _update();
     };
